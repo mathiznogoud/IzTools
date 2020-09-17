@@ -2,8 +2,9 @@ FROM alpine
 
 RUN apk add nmap nmap-scripts masscan python3 py3-pip bash libxslt git sudo libpcap-dev
 RUN mkdir /home/iznogoud
-RUN cd /home/iznogoud && git clone https://github.com/mathiznogoud/massmap4docker
-WORKDIR /home/iznogoud
+RUN git clone https://github.com/mathiznogoud/IzTools /home/iznogoud/MassMap
+RUN cd /home/iznogoud/MassMap && git filter-branch --prune-empty --subdirectory-filter MassMapTools/Massmap4docker/ HEAD
+WORKDIR /home/iznogoud/MassMap
 CMD ["/bin/bash"]
 
 
